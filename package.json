@@ -1,13 +1,13 @@
 {
   "name": "projeto-mathinc-backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "It is a web application aimed at learning mathematics.",
   "main": "./src/server.ts",
   "scripts": {
     "start": "ts-node src/server.ts",
     "dev": "nodemon ./src/server.ts"
   },
-  "author": "",
+  "author": "Lucas Duarte da Silva",
   "license": "ISC",
   "dependencies": {
     "@prisma/client": "^4.4.0",
