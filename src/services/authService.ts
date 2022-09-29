@@ -26,18 +26,28 @@ export async function findUserByEmail(email: string, login = true) {
   }
 
   if (login && !userDb.length) {
-    throw unauthorizedError("Email ou password inválidos!");
+    throw notFoundError("Email ou password inválidos!");
   }
 
   return userDb;
 }
 
-export async function getToken(userDb: Users[]) {
+export async function getToken(userDb: Users[], password: string) {
   const JWT_PASSWORD: string = String(process.env.JWT_KEY);
+
+  await comparePassword(password, userDb[0].password);
 
   const token: string = jwt.sign(userDb[0], JWT_PASSWORD);
 
   return token;
+}
+
+async function comparePassword(password: string, passwordDb: string) {
+  const passwordValidation: boolean = bcrypt.compareSync(password, passwordDb);
+
+  if (!passwordValidation) {
+    throw unauthorizedError("Email ou password incorretos!");
+  }
 }
 
 async function encryptPassword(password: string) {

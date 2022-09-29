@@ -17,7 +17,7 @@ export async function getToken(req: Request, res: Response) {
 
   const userDb: Users[] = await authService.findUserByEmail(user.email);
 
-  const token: string = await authService.getToken(userDb);
+  const token: string = await authService.getToken(userDb, user.password);
 
   res.status(201).send(token);
 }
