@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt";
 import * as authRepository from "../repositories/authRepository";
 import { conflictError } from "../utils/errorUtils";
-import { IUserCreationReg } from "../utils/userUtils";
+import { IUserCreationLogin, IUserCreationReg } from "../utils/userUtils";
 
 export async function insertUser(user: IUserCreationReg) {
   const userDb = await authRepository.findUserByEmail(user.email);
@@ -17,6 +17,8 @@ export async function insertUser(user: IUserCreationReg) {
 
   return await authRepository.insertUser(user);
 }
+
+export async function loginUser(user: IUserCreationLogin) {}
 
 async function encryptPassword(password: string) {
   const digits = Number(process.env.PASSWORD_DIGIT_BCRYPT);
