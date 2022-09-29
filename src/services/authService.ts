@@ -1,25 +1,34 @@
 import bcrypt from "bcrypt";
 import * as authRepository from "../repositories/authRepository";
-import { conflictError } from "../utils/errorUtils";
-import { IUserCreationLogin, IUserCreationReg } from "../utils/userUtils";
+import { conflictError, notFoundError } from "../utils/errorUtils";
+import * as userUtils from "../utils/userUtils";
 import jwt from "jsonwebtoken";
+import { Users } from "@prisma/client";
 
-export async function insertUser(user: IUserCreationReg) {
-  const userDb = await authRepository.findUserByEmail(user.email);
-
-  if (userDb) {
-    throw conflictError(
-      "Email já está em uso, por favor cadastre-se com um outro email!"
-    );
-  }
-
+export async function insertUser(user: userUtils.IUserCreationReg) {
   const password: string = await encryptPassword(user.password);
   await configurePasswords(user, password);
 
   return await authRepository.insertUser(user);
 }
 
-export async function getToken(user: IUserCreationReg) {
+export async function findUserByEmail(email: string, login = true) {
+  const userDb: Users | null = await authRepository.findUserByEmail(email);
+
+  if (login && userDb) {
+    throw conflictError(
+      "Email já está em uso, por favor cadastre-se com um outro email!"
+    );
+  }
+
+  if (!login && !userDb) {
+    throw notFoundError("Email ou password inválidos!");
+  }
+
+  return userDb;
+}
+
+export async function getToken(user: userUtils.IUserToken) {
   const JWT_PASSWORD: string = String(process.env.JWT_KEY);
 
   const token: string = jwt.sign(user, JWT_PASSWORD);
@@ -34,7 +43,10 @@ async function encryptPassword(password: string) {
   return passwordHash;
 }
 
-async function configurePasswords(user: IUserCreationReg, password: string) {
+async function configurePasswords(
+  user: userUtils.IUserCreationReg,
+  password: string
+) {
   delete user.confirmedPassword;
   user.password = password;
 }
