@@ -12,9 +12,9 @@ export async function insertUser(user: IUserCreationReg) {
     );
   }
 
-  user.password = await encryptPassword(user.password);
+  const password: string = await encryptPassword(user.password);
+  await configurePasswords(user, password);
 
-  delete user.confirmedPassword;
   return await authRepository.insertUser(user);
 }
 
@@ -23,4 +23,9 @@ async function encryptPassword(password: string) {
   const passwordHash = bcrypt.hashSync(password, digits);
 
   return passwordHash;
+}
+
+async function configurePasswords(user: IUserCreationReg, password: string) {
+  delete user.confirmedPassword;
+  user.password = password;
 }
