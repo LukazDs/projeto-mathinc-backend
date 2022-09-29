@@ -9,13 +9,15 @@ export async function insertUser(req: Request, res: Response) {
   await authService.findUserByEmail(user.email);
   const userdb: Users = await authService.insertUser(user);
 
-  res.status(200).send(userdb);
+  res.status(201).send(userdb);
 }
 
-export async function loginUser(req: Request, res: Response) {
+export async function getToken(req: Request, res: Response) {
   const user: IUserCreationLogin = req.body;
 
-  //const userdb: Users = await authService.insertUser(user);
+  const userDb: Users[] = await authService.findUserByEmail(user.email);
 
-  res.status(200).send("Usuário logado!");
+  const token: string = await authService.getToken(userDb);
+
+  res.status(201).send(token);
 }

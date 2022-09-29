@@ -9,3 +9,9 @@ authRouter.post(
   validateUser.validateRegisterBody,
   authController.insertUser
 );
+
+authRouter.post(
+  "/user/login",
+  validateUser.validateRegisterBody,
+  authController.insertUser
+);

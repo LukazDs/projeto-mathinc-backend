@@ -3,7 +3,7 @@ import { prisma } from "../config/database";
 import { IUserCreationReg } from "../utils/userUtils";
 
 export async function findUserByEmail(email: string) {
-  const userDb: Users | null = await prisma.users.findUnique({
+  const userDb: Users[] = await prisma.users.findMany({
     where: { email },
   });
   return userDb;

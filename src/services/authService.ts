@@ -13,7 +13,7 @@ export async function insertUser(user: userUtils.IUserCreationReg) {
 }
 
 export async function findUserByEmail(email: string, login = true) {
-  const userDb: Users | null = await authRepository.findUserByEmail(email);
+  const userDb: Users[] = await authRepository.findUserByEmail(email);
 
   if (login && userDb) {
     throw conflictError(
@@ -28,10 +28,10 @@ export async function findUserByEmail(email: string, login = true) {
   return userDb;
 }
 
-export async function getToken(user: userUtils.IUserToken) {
+export async function getToken(userDb: Users[]) {
   const JWT_PASSWORD: string = String(process.env.JWT_KEY);
 
-  const token: string = jwt.sign(user, JWT_PASSWORD);
+  const token: string = jwt.sign(userDb[0], JWT_PASSWORD);
 
   return token;
 }
