@@ -12,6 +12,8 @@ export async function insertUser(user: IUserCreationReg) {
     );
   }
 
+  user.password = await encryptPassword(user.password);
+
   delete user.confirmedPassword;
   return await authRepository.insertUser(user);
 }
