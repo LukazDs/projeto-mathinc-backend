@@ -1,6 +1,10 @@
 import bcrypt from "bcrypt";
 import * as authRepository from "../repositories/authRepository";
-import { conflictError, notFoundError } from "../utils/errorUtils";
+import {
+  conflictError,
+  notFoundError,
+  unauthorizedError,
+} from "../utils/errorUtils";
 import * as userUtils from "../utils/userUtils";
 import jwt from "jsonwebtoken";
 import { Users } from "@prisma/client";
@@ -15,14 +19,14 @@ export async function insertUser(user: userUtils.IUserCreationReg) {
 export async function findUserByEmail(email: string, login = true) {
   const userDb: Users[] = await authRepository.findUserByEmail(email);
 
-  if (login && userDb) {
+  if (!login && userDb.length) {
     throw conflictError(
       "Email já está em uso, por favor cadastre-se com um outro email!"
     );
   }
 
-  if (!login && !userDb) {
-    throw notFoundError("Email ou password inválidos!");
+  if (login && !userDb.length) {
+    throw unauthorizedError("Email ou password inválidos!");
   }
 
   return userDb;

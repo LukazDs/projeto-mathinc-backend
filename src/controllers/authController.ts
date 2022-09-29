@@ -6,7 +6,7 @@ import { IUserCreationLogin, IUserCreationReg } from "../utils/userUtils";
 export async function insertUser(req: Request, res: Response) {
   const user: IUserCreationReg = req.body;
 
-  await authService.findUserByEmail(user.email);
+  await authService.findUserByEmail(user.email, false);
   const userdb: Users = await authService.insertUser(user);
 
   res.status(201).send(userdb);

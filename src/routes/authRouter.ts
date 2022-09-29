@@ -12,6 +12,6 @@ authRouter.post(
 
 authRouter.post(
   "/user/login",
-  validateUser.validateRegisterBody,
-  authController.insertUser
+  validateUser.validateLoginBody,
+  authController.getToken
 );
