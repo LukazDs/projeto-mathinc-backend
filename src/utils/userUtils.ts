@@ -10,3 +10,5 @@ export type IUserCreationLogin = Omit<
   IUser,
   keyof { name: string; imageUrl: string }
 >;
+
+export type IUserToken = Omit<Users, "password">;
