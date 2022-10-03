@@ -6,7 +6,8 @@ import errorHandler from "./middlewares/errorHandle";
 
 const app = express();
 
-app.use(express.json(), cors());
+app.use(express.json());
+app.use(cors());
 
 app.use(authRouter);
 app.use(errorHandler);
