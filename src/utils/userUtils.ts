@@ -11,4 +11,8 @@ export type IUserCreationLogin = Omit<
   keyof { name: string; imageUrl: string }
 >;
 
-export type IUserToken = Omit<Users, "password">;
+export type IUserNoPassword = Omit<Users, "password">;
+
+export interface IUserToken extends IUserNoPassword {
+  token: string;
+}

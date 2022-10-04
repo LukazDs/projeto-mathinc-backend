@@ -42,6 +42,18 @@ export async function getToken(userDb: Users[], password: string) {
   return token;
 }
 
+export async function createUser(user: Users, token: string) {
+  const userDefault: userUtils.IUserToken = {
+    token,
+    id: user.id,
+    name: user.name,
+    email: user.email,
+    imageUrl: user.imageUrl,
+  };
+
+  return userDefault;
+}
+
 async function comparePassword(password: string, passwordDb: string) {
   const passwordValidation: boolean = bcrypt.compareSync(password, passwordDb);
 

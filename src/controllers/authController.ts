@@ -19,12 +19,7 @@ export async function getToken(req: Request, res: Response) {
 
   const token: string = await authService.getToken(userDb, user.password);
 
-  const userDefault = {
-    token,
-    id: userDb[0].id,
-    name: userDb[0].name,
-    email: userDb[0].email,
-  };
+  const userDefault = await authService.createUser(userDb[0], token);
 
   res.status(201).send(userDefault);
 }
