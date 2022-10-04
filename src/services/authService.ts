@@ -34,10 +34,11 @@ export async function findUserByEmail(email: string, login = true) {
 
 export async function getToken(userDb: Users[], password: string) {
   const JWT_PASSWORD: string = String(process.env.JWT_KEY);
+  const TIME: string = String(process.env.JWT_TIME);
 
   await comparePassword(password, userDb[0].password);
 
-  const token: string = jwt.sign(userDb[0], JWT_PASSWORD);
+  const token: string = jwt.sign(userDb[0], JWT_PASSWORD, { expiresIn: TIME });
 
   return token;
 }
