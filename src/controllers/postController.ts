@@ -1,7 +1,7 @@
 import { Posts } from "@prisma/client";
 import { Request, Response } from "express";
 import * as postService from "../services/postService";
-import { IPost } from "../utils/postUtils";
+import { IPostCreate } from "../utils/postUtils";
 
 export async function getPosts(_req: Request, res: Response) {
   const posts: Posts[] = await postService.getPosts();
@@ -10,9 +10,11 @@ export async function getPosts(_req: Request, res: Response) {
 }
 
 export async function insertPost(req: Request, res: Response) {
-  const post: IPost = req.body;
+  const post: IPostCreate = req.body;
 
-  await postService.insertPost(post);
+  const { verified } = res.locals;
+
+  await postService.insertPost(post, verified.id);
 
   res.status(201).send("Post Created");
 }

@@ -1,5 +1,5 @@
 import { Posts } from "@prisma/client";
-import { IPost } from "../utils/postUtils";
+import { IPost, IPostCreate } from "../utils/postUtils";
 import * as postRepository from "../repositories/postRepository";
 
 export async function getPosts() {
@@ -8,6 +8,11 @@ export async function getPosts() {
   return posts;
 }
 
-export async function insertPost(post: IPost) {
-  await postRepository.insertPost(post);
+export async function insertPost(post: IPostCreate, id: number) {
+  const postPayload: IPost = {
+    ...post,
+    userId: id,
+  };
+
+  await postRepository.insertPost(postPayload);
 }
