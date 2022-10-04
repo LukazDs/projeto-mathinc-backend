@@ -5,3 +5,7 @@ export async function getPosts() {
   const postDb: Posts[] = await prisma.posts.findMany();
   return postDb;
 }
+
+// export async function insertPost(post: ) {
+
+// }
