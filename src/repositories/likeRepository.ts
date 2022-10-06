@@ -12,3 +12,7 @@ export async function findLike(userId: number, postId: number) {
 
   return like;
 }
+
+export async function removeLike(userId: number, postId: number) {
+  await prisma.likes.deleteMany({ where: { userId, postId } });
+}
