@@ -9,7 +9,7 @@ async function validateToken(req: Request, res: Response, next: NextFunction) {
   const verified = jwt.verifyToken(token);
 
   if (!verified) {
-    throw unauthorizedError("Token inválido!");
+    return res.status(401).send("Token inválido!");
   }
 
   res.locals.verified = verified;
