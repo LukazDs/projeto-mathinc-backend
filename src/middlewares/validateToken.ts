@@ -4,6 +4,7 @@ import { unauthorizedError } from "../utils/errorUtils";
 
 async function validateToken(req: Request, res: Response, next: NextFunction) {
   const { authorization } = req.headers;
+  console.log(req.headers.authorization);
   const token: string = String(authorization?.replace("Bearer ", ""));
 
   const verified = jwt.verifyToken(token);

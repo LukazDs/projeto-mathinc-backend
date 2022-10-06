@@ -4,5 +4,5 @@ import validateToken from "../middlewares/validateToken";
 
 export const postRouter = Router();
 
-postRouter.get("/posts", postController.getPosts);
+postRouter.get("/posts", validateToken, postController.getPosts);
 postRouter.post("/posts", validateToken, postController.insertPost);
