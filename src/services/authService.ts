@@ -32,14 +32,16 @@ export async function findUserByEmail(email: string, login = true) {
   return userDb;
 }
 
-export async function findUserById(id: number) {
-  const userDb: Users[] = await authRepository.findUserById(id);
+export async function findUserById(userId: number) {
+  const userDb: Users[] = await authRepository.findUserById(userId);
 
-  const userPayload = {
-    id: userDb[0].id,
-    name: userDb[0].name,
-    imageUrl: userDb[0].imageUrl,
-  };
+  if (!userDb.length) {
+    throw notFoundError("Usuário não encontrado!");
+  }
+
+  const { id, name, imageUrl, email } = userDb[0];
+
+  const userPayload: userUtils.IUserNoPassword = { id, name, imageUrl, email };
 
   return userPayload;
 }
