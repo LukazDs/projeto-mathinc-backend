@@ -4,6 +4,8 @@ import * as validateUser from "../middlewares/validateUser";
 
 export const authRouter = Router();
 
+authRouter.get("/user/:id", authController.getUserById);
+
 authRouter.post(
   "/user/register",
   validateUser.validateRegisterBody,
@@ -13,5 +15,5 @@ authRouter.post(
 authRouter.post(
   "/user/login",
   validateUser.validateLoginBody,
-  authController.getToken
+  authController.getTokenWithUser
 );

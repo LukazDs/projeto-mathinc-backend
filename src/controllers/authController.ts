@@ -12,7 +12,7 @@ export async function insertUser(req: Request, res: Response) {
   res.status(201).send(userdb);
 }
 
-export async function getToken(req: Request, res: Response) {
+export async function getTokenWithUser(req: Request, res: Response) {
   const user: IUserCreationLogin = req.body;
 
   const userDb: Users[] = await authService.findUserByEmail(user.email);
@@ -22,4 +22,12 @@ export async function getToken(req: Request, res: Response) {
   const userDefault = await authService.createUser(userDb[0], token);
 
   res.status(201).send(userDefault);
+}
+
+export async function getUserById(req: Request, res: Response) {
+  const userId: number = Number(req.params.id);
+
+  const userDb = await authService.findUserById(userId);
+
+  res.status(201).send(userDb);
 }

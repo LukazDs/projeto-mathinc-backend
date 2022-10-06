@@ -32,6 +32,18 @@ export async function findUserByEmail(email: string, login = true) {
   return userDb;
 }
 
+export async function findUserById(id: number) {
+  const userDb: Users[] = await authRepository.findUserById(id);
+
+  const userPayload = {
+    id: userDb[0].id,
+    name: userDb[0].name,
+    imageUrl: userDb[0].imageUrl,
+  };
+
+  return userPayload;
+}
+
 export async function getToken(userDb: Users[], password: string) {
   const JWT_PASSWORD: string = String(process.env.JWT_KEY);
   const TIME: string = String(process.env.JWT_TIME);
