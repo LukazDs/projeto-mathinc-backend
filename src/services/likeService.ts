@@ -14,7 +14,7 @@ export async function findLike(userId: number, postId: number, liked: boolean) {
   }
 
   if (liked && !like.length) {
-    throw notFoundError("Usuário já deu deslike!");
+    throw notFoundError("Like do usuário não encontrado!");
   }
 
   return like;

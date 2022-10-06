@@ -18,5 +18,5 @@ export async function removeLike(req: Request, res: Response) {
 
   await likeService.removeLike(Number(userId), Number(postId));
 
-  res.status(201).send("Like do usuário não encontrado.");
+  res.status(201).send("Usuário deu deslike.");
 }

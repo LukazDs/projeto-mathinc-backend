@@ -1,7 +1,8 @@
 import { Router } from "express";
 import * as likeController from "../controllers/likeController";
+import validateToken from "../middlewares/validateToken";
 
 export const likeRouter = Router();
 
-likeRouter.post("/like", likeController.insertLike);
-likeRouter.delete("/like", likeController.removeLike);
+likeRouter.post("/like", validateToken, likeController.insertLike);
+likeRouter.delete("/like", validateToken, likeController.removeLike);
