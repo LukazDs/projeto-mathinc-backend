@@ -1,3 +1,4 @@
+import { Likes } from "@prisma/client";
 import { Request, Response } from "express";
 import * as likeService from "../services/likeService";
 
@@ -9,6 +10,14 @@ export async function insertLike(req: Request, res: Response) {
   await likeService.insertLike(Number(userId), Number(postId));
 
   res.status(201).send("Usuário deu like.");
+}
+
+export async function getLikeByUserId(req: Request, res: Response) {
+  const { id } = req.params;
+
+  const likes: Likes[] = await likeService.findLikeByUserId(Number(id));
+
+  res.status(200).send(likes);
 }
 
 export async function removeLike(req: Request, res: Response) {

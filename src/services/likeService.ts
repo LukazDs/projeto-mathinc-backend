@@ -23,3 +23,8 @@ export async function findLike(userId: number, postId: number, liked: boolean) {
 export async function removeLike(userId: number, postId: number) {
   await likeRepository.removeLike(userId, postId);
 }
+
+export async function findLikeByUserId(userId: number) {
+  const likes: Likes[] = await likeRepository.findLikeByUserId(userId);
+  return likes;
+}
