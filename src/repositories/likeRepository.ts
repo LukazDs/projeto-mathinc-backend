@@ -18,6 +18,11 @@ export async function findLikeByUserId(userId: number) {
   return likes;
 }
 
+export async function findLikeByPostId(postId: number) {
+  const likes: Likes[] = await prisma.likes.findMany({ where: { postId } });
+  return likes;
+}
+
 export async function removeLike(userId: number, postId: number) {
   await prisma.likes.deleteMany({ where: { userId, postId } });
 }

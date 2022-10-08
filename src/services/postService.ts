@@ -7,6 +7,8 @@ import { notFoundError } from "../utils/errorUtils";
 export async function getPosts() {
   const posts: Posts[] = await postRepository.getPosts();
 
+  posts.reverse();
+
   return posts;
 }
 

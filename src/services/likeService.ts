@@ -28,3 +28,8 @@ export async function findLikeByUserId(userId: number) {
   const likes: Likes[] = await likeRepository.findLikeByUserId(userId);
   return likes;
 }
+
+export async function findAmountLikePostId(postId: number) {
+  const likes: Likes[] = await likeRepository.findLikeByPostId(postId);
+  return likes.length;
+}

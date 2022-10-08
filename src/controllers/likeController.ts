@@ -20,6 +20,16 @@ export async function getLikeByUserId(req: Request, res: Response) {
   res.status(200).send(likes);
 }
 
+export async function getAmountLikeByPostId(req: Request, res: Response) {
+  const { id } = req.params;
+
+  const amountLikes: number = await likeService.findAmountLikePostId(
+    Number(id)
+  );
+
+  res.status(200).send({ amount: amountLikes });
+}
+
 export async function removeLike(req: Request, res: Response) {
   const { userId, postId } = req.query;
 

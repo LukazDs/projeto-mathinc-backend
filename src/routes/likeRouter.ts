@@ -10,4 +10,5 @@ likeRouter.get(
   validateToken,
   likeController.getLikeByUserId
 );
+likeRouter.get("/likes/post/:id/amount", likeController.getAmountLikeByPostId);
 likeRouter.delete("/like", validateToken, likeController.removeLike);
