@@ -23,12 +23,13 @@ model Users {
 }
 
 model Posts {
-  id       Int     @id @default(autoincrement())
-  title    String
-  imageUrl String
-  userId   Int
-  users    Users   @relation(fields: [userId], references: [id])
-  likes    Likes[]
+  id         Int      @id @default(autoincrement())
+  title      String
+  imageUrl   String
+  userId     Int
+  createDate DateTime
+  users      Users    @relation(fields: [userId], references: [id])
+  likes      Likes[]
 }
 
 model Likes {
