@@ -10,7 +10,7 @@ services:
     volumes:
       - postgres_mathinc_db:/var/lib/postgresql/data
 
-  node_sorteador_app:
+  node_mathinc_app:
     container_name: node_mathinc_app
     build: .
     ports:
@@ -21,4 +21,4 @@ services:
       - .env
 
 volumes:
-  pg_sorteador-db:
+  postgres_mathinc_db:

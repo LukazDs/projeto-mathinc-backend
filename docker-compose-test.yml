@@ -8,11 +8,11 @@ services:
     env_file:
       - .env.test
 
-  node_sorteador_app:
-    container_name: node_sorteador_app
+  node_mathinc_app:
+    container_name: node_mathinc_app
     build: .
     ports:
-      - 5000:5000
+      - 80:5000
     depends_on:
       - postgres_mathinc_db
     env_file:
