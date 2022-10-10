@@ -4,9 +4,12 @@
   "description": "It is a web application aimed at learning mathematics.",
   "main": "./src/server.ts",
   "scripts": {
-    "start": "ts-node src/server.ts",
-    "dev": "nodemon ./src/server.ts",
-    "test": "dotenv -e .env.test prisma migrate dev && dotenv -e .env.test jest -i"
+    "build": "tsc",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:deploy": "prisma migrate deploy",
+    "dev": "nodemon src/server.ts",
+    "test": "dotenv -e .env.test prisma migrate dev && dotenv -e .env.test cross-env NODE_OPTIONS=--experimental-vm-modules jest -- -i",
+    "start": "npm run prisma:deploy && node dist/src/server.js"
   },
   "author": "Lucas Duarte da Silva",
   "license": "ISC",
