@@ -14,7 +14,7 @@ services:
     container_name: node_mathinc_app
     build: .
     ports:
-      - 80:5000
+      - 443:5000
     depends_on:
       - postgres_mathinc_db
     env_file:
