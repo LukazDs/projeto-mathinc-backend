@@ -12,7 +12,7 @@ jobs:
           envkey_POSTGRES_USER: "postgres"
           envkey_POSTGRES_PASSWORD: "postgres"
           envkey_POSTGRES_DB: "mathinc-db"
-          envkey_DATABASE_URL: "postgresql://postgres:postgres@postgres_mathinc_db:5432/students"
+          envkey_DATABASE_URL: "postgresql://postgres:postgres@postgres_mathinc_db:5432/mathinc-db"
           file_name: .env.test
       - name: Run tests
-        run: docker-compose -f docker-compose-test.yml run node_sorteador_app npm run test
+        run: docker-compose -f docker-compose-test.yml run node_mathinc_app npm run test
