@@ -1,5 +1,5 @@
 import joi from "joi";
-import { IUserCreationReg, IUserCreationLogin } from "../utils/userUtils";
+import { IUserCreationReg, IUserCreationLogin } from "../utils/userUtils.js";
 
 const userLoginSchema = joi.object<IUserCreationLogin>({
   email: joi.string().email().required().label("Informe um email válido!"),

@@ -1,6 +1,6 @@
 import { Likes } from "@prisma/client";
-import * as likeRepository from "../repositories/likeRepository";
-import { conflictError, notFoundError } from "../utils/errorUtils";
+import * as likeRepository from "../repositories/likeRepository.js";
+import { conflictError, notFoundError } from "../utils/errorUtils.js";
 
 export async function insertLike(userId: number, postId: number) {
   await likeRepository.insertLike(userId, postId);

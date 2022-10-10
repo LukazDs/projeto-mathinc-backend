@@ -1,7 +1,7 @@
 import { Router } from "express";
-import * as postController from "../controllers/postController";
-import { validatePostBody } from "../middlewares/validatePost";
-import validateToken from "../middlewares/validateToken";
+import * as postController from "../controllers/postController.js";
+import { validatePostBody } from "../middlewares/validatePost.js";
+import validateToken from "../middlewares/validateToken.js";
 
 export const postRouter = Router();
 

@@ -1,6 +1,6 @@
 import { Users } from "@prisma/client";
-import { prisma } from "../config/database";
-import { IUserCreationReg } from "../utils/userUtils";
+import { prisma } from "../config/database.js";
+import { IUserCreationReg } from "../utils/userUtils.js";
 
 export async function findUserByEmail(email: string) {
   const userDb: Users[] = await prisma.users.findMany({

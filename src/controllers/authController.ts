@@ -1,7 +1,7 @@
 import { Users } from "@prisma/client";
 import { Request, Response } from "express";
-import * as authService from "../services/authService";
-import { IUserCreationLogin, IUserCreationReg } from "../utils/userUtils";
+import * as authService from "../services/authService.js";
+import { IUserCreationLogin, IUserCreationReg } from "../utils/userUtils.js";
 
 export async function insertUser(req: Request, res: Response) {
   const user: IUserCreationReg = req.body;

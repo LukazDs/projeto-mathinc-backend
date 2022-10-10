@@ -1,10 +1,10 @@
 import express from "express";
 import cors from "cors";
 import "express-async-errors";
-import { authRouter } from "./routes/authRouter";
-import { postRouter } from "./routes/postRouter";
-import { likeRouter } from "./routes/likeRouter";
-import errorHandler from "./middlewares/errorHandle";
+import { authRouter } from "./routes/authRouter.js";
+import { postRouter } from "./routes/postRouter.js";
+import { likeRouter } from "./routes/likeRouter.js";
+import errorHandler from "./middlewares/errorHandle.js";
 
 const app = express();
 

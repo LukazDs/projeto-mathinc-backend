@@ -1,5 +1,5 @@
 import supertest from "supertest";
-import * as userFactory from "../../factories/userFactory";
+import * as userFactory from "../factories/userFactory";
 import app from "../../src/app";
 
 describe("Testa registro de usuário.", () => {

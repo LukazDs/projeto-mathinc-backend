@@ -1,5 +1,5 @@
 import joi from "joi";
-import { IPost } from "../utils/postUtils";
+import { IPost } from "../utils/postUtils.js";
 
 const postSchema = joi.object<IPost>({
   title: joi.string().required().label("Informe um titulo válido!"),

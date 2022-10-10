@@ -1,8 +1,8 @@
 import { Posts, Users } from "@prisma/client";
-import { IPost, IPostCreate } from "../utils/postUtils";
-import * as postRepository from "../repositories/postRepository";
-import * as authRepository from "../repositories/authRepository";
-import { notFoundError } from "../utils/errorUtils";
+import { IPost, IPostCreate } from "../utils/postUtils.js";
+import * as postRepository from "../repositories/postRepository.js";
+import * as authRepository from "../repositories/authRepository.js";
+import { notFoundError } from "../utils/errorUtils.js";
 
 export async function getPosts() {
   const posts: Posts[] = await postRepository.getPosts();

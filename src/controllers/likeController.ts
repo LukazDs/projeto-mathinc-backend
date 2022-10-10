@@ -1,6 +1,6 @@
 import { Likes } from "@prisma/client";
 import { Request, Response } from "express";
-import * as likeService from "../services/likeService";
+import * as likeService from "../services/likeService.js";
 
 export async function insertLike(req: Request, res: Response) {
   const { userId, postId } = req.query;

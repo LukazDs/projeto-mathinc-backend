@@ -4,7 +4,7 @@ import {
   AppError,
   errorTypeToStatusCode,
   isAppError,
-} from "../utils/errorUtils";
+} from "../utils/errorUtils.js";
 
 export default async function errorHandler(
   err: Error | AppError,

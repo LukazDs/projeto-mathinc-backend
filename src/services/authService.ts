@@ -1,13 +1,13 @@
+import jwt from "jsonwebtoken";
+import { Users } from "@prisma/client";
 import bcrypt from "bcrypt";
-import * as authRepository from "../repositories/authRepository";
+import * as authRepository from "../repositories/authRepository.js";
 import {
   conflictError,
   notFoundError,
   unauthorizedError,
-} from "../utils/errorUtils";
-import * as userUtils from "../utils/userUtils";
-import jwt from "jsonwebtoken";
-import { Users } from "@prisma/client";
+} from "../utils/errorUtils.js";
+import * as userUtils from "../utils/userUtils.js";
 
 export async function insertUser(user: userUtils.IUserCreationReg) {
   const password: string = await encryptPassword(user.password);

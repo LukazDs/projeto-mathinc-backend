@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { userRegisterSchema, userLoginSchema } from "../schemas/userSchema";
+import { userRegisterSchema, userLoginSchema } from "../schemas/userSchema.js";
 
 export async function validateRegisterBody(
   req: Request,

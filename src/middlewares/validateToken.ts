@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import jwt from "../token/jwt";
+import jwt from "../token/jwt.js";
 
 async function validateToken(req: Request, res: Response, next: NextFunction) {
   const { authorization } = req.headers;

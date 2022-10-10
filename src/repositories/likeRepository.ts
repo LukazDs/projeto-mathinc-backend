@@ -1,5 +1,5 @@
 import { Likes } from "@prisma/client";
-import { prisma } from "../config/database";
+import { prisma } from "../config/database.js";
 
 export async function insertLike(userId: number, postId: number) {
   await prisma.likes.create({ data: { postId, userId } });

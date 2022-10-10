@@ -1,7 +1,7 @@
 import { Posts } from "@prisma/client";
 import { Request, Response } from "express";
-import * as postService from "../services/postService";
-import { IPostCreate } from "../utils/postUtils";
+import * as postService from "../services/postService.js";
+import { IPostCreate } from "../utils/postUtils.js";
 
 export async function getPosts(_req: Request, res: Response) {
   const posts: Posts[] = await postService.getPosts();

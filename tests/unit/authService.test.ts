@@ -1,5 +1,5 @@
 import * as authRepository from "../../src/repositories/authRepository";
-import * as userFactory from "../../factories/userFactory";
+import * as userFactory from "../factories/userFactory";
 import * as authSevice from "../../src/services/authService";
 
 describe("Testa cadatro do usuário", () => {

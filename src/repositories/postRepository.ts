@@ -1,6 +1,6 @@
 import { Posts } from "@prisma/client";
-import { prisma } from "../config/database";
-import { IPost } from "../utils/postUtils";
+import { prisma } from "../config/database.js";
+import { IPost } from "../utils/postUtils.js";
 
 export async function getPosts() {
   const postDb: Posts[] = await prisma.posts.findMany();

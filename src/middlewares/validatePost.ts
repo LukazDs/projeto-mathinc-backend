@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { postSchema } from "../schemas/postSchema";
+import { postSchema } from "../schemas/postSchema.js";
 
 export async function validatePostBody(
   req: Request,
