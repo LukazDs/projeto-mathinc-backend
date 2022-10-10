@@ -10,4 +10,12 @@ describe("Testa registro de usuário.", () => {
 
     expect(result.status).toBe(201);
   });
+  it("Deve retornar 409, ao tentar cadastrar um email que exista", async () => {
+    const user = await userFactory.createUser();
+
+    await supertest(app).post("/user/register").send(user);
+
+    const result = await supertest(app).post("/user/register").send(user);
+    expect(result.status).toBe(409);
+  });
 });
