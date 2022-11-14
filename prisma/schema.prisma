@@ -53,8 +53,20 @@ model Disciplines {
 }
 
 model Challenges {
-  id           Int          @id @default(autoincrement())
+  id           Int            @id @default(autoincrement())
   title        String
   disciplineId Int?
-  disciplines  Disciplines? @relation(fields: [disciplineId], references: [id])
+  disciplines  Disciplines?   @relation(fields: [disciplineId], references: [id])
+  alternatives Alternatives[]
+
+  @@map("challenges")
+}
+
+model Alternatives {
+  id          Int         @id @default(autoincrement())
+  title       String
+  challengeId Int?
+  challenges  Challenges? @relation(fields: [challengeId], references: [id])
+
+  @@map("alternatives")
 }
