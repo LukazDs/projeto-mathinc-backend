@@ -30,6 +30,8 @@ model Posts {
   createDate DateTime
   users      Users    @relation(fields: [userId], references: [id])
   likes      Likes[]
+
+  @@map("posts")
 }
 
 model Likes {
@@ -38,4 +40,13 @@ model Likes {
   userId Int?
   posts  Posts? @relation(fields: [postId], references: [id])
   users  Users? @relation(fields: [userId], references: [id])
+
+  @@map("likes")
+}
+
+model Disciplines {
+  id   Int    @id @default(autoincrement())
+  name String @unique
+
+  @@map("disciplines")
 }
