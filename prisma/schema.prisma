@@ -45,8 +45,16 @@ model Likes {
 }
 
 model Disciplines {
-  id   Int    @id @default(autoincrement())
-  name String @unique
+  id         Int          @id @default(autoincrement())
+  name       String       @unique
+  challenges Challenges[]
 
   @@map("disciplines")
+}
+
+model Challenges {
+  id           Int          @id @default(autoincrement())
+  title        String
+  disciplineId Int?
+  disciplines  Disciplines? @relation(fields: [disciplineId], references: [id])
 }
