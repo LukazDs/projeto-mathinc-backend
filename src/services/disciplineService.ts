@@ -1,12 +1,26 @@
 import * as disciplineRepository from "../repositories/disciplineRepository.js";
-import { faker } from "@faker-js/faker";
-import { Disciplines, prisma } from "@prisma/client";
+import { Disciplines } from "@prisma/client";
 
 export async function getDisciplines() {
-  const discipline: Disciplines[] = await disciplineRepository.getDisciplines();
-  const number: number = Number(faker.random.numeric());
+  const disciplines: Disciplines[] =
+    await disciplineRepository.getDisciplines();
 
-  const id: number = Math.floor((number * discipline.length) / 10 + 1);
+  return await randomArray(disciplines);
+}
 
-  return await disciplineRepository.getDisciplinesById(id);
+async function randomArray(array: Object[]) {
+  const arrayRandom: Object[] = [];
+  const length: number = array.length;
+
+  while (arrayRandom.length < length) {
+    let numberRandom = Math.floor(Math.random() * length);
+    let element: Disciplines | Object = array[numberRandom];
+
+    if (arrayRandom.indexOf(element) == -1) arrayRandom.push(element);
+
+    if (arrayRandom.length === length) {
+      break;
+    }
+  }
+  return arrayRandom;
 }
