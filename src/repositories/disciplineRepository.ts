@@ -5,7 +5,10 @@ export async function getDisciplines() {
   const disciplines: Disciplines[] = await prisma.disciplines.findMany({
     take: 3,
     include: {
-      challenges: { include: { alternatives: true } },
+      challenges: {
+        take: 1,
+        include: { alternatives: true },
+      },
     },
   });
 
