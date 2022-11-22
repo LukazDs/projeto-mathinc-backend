@@ -3,4 +3,4 @@ import { getDisciplines } from "../controllers/disciplineController.js";
 
 export const disciplineRouter = Router();
 
-disciplineRouter.get("/discipline", getDisciplines);
+disciplineRouter.get("/disciplines", getDisciplines);

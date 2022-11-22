@@ -58,6 +58,7 @@ model Challenges {
   disciplineId Int?
   disciplines  Disciplines?   @relation(fields: [disciplineId], references: [id])
   alternatives Alternatives[]
+  imageUrl     String?
 
   @@map("challenges")
 }
@@ -65,6 +66,7 @@ model Challenges {
 model Alternatives {
   id          Int         @id @default(autoincrement())
   title       String
+  status      Boolean
   challengeId Int?
   challenges  Challenges? @relation(fields: [challengeId], references: [id])
 
