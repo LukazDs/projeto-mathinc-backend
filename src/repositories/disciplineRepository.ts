@@ -6,7 +6,7 @@ export async function getDisciplines() {
     take: 3,
     include: {
       challenges: {
-        take: 1,
+        take: 3,
         include: { alternatives: true },
       },
     },

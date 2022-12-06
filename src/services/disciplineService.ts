@@ -2,10 +2,14 @@ import * as disciplineRepository from "../repositories/disciplineRepository.js";
 import { Disciplines } from "@prisma/client";
 
 export async function getDisciplines() {
-  const disciplines: Disciplines[] =
-    await disciplineRepository.getDisciplines();
+  const disciplines: any[] = await disciplineRepository.getDisciplines();
 
-  return await randomArray(disciplines);
+  disciplines.map(async (v) => {
+    v.challenges = await randomArray(v.challenges);
+    v.challenges = [v.challenges[0]];
+  });
+
+  return disciplines;
 }
 
 async function randomArray(array: Object[]) {
